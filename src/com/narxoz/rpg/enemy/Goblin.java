@@ -1,10 +1,12 @@
 package com.narxoz.rpg.enemy;
 
+import com.narxoz.rpg.builder.Enemy;
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.loot.LootTable;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Example basic enemy implementation — a simple Goblin.
@@ -53,7 +55,7 @@ import java.util.ArrayList;
  *   - Ability list → MUST be deep copied!
  *   - LootTable → MUST be deep copied!
  */
-public class Goblin implements Enemy {
+public class Goblin extends Enemy {
 
     private String name;
     private int health;
@@ -65,17 +67,7 @@ public class Goblin implements Enemy {
 
     // TODO: Add more fields as needed (element, AI behavior, etc.)
 
-    public Goblin(String name) {
-        this.name = name;
-        // Goblin stats: weak but fast
-        this.health = 100;
-        this.damage = 15;
-        this.defense = 5;
-        this.speed = 35;
-        this.abilities = new ArrayList<>();
-        // TODO: Initialize with default abilities
-        // TODO: Initialize with default loot table
-    }
+    public Goblin() {}
 
     // TODO: Implement methods from Enemy interface
     // You need to define those methods in Enemy first!
@@ -96,6 +88,19 @@ public class Goblin implements Enemy {
         System.out.println("Abilities: " + abilities.size() + " ability(ies)");
         // TODO: Display abilities details
         // TODO: Display loot table
+    }
+
+    private Goblin(Goblin other) {
+        super(other);   
+    }
+
+    @Override
+    public Enemy clone() {
+        return new Goblin(this); 
+    }
+
+    @Override
+    public void attack(Enemy target) {
     }
 
     // TODO: Implement clone() for Prototype pattern

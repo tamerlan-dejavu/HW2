@@ -14,13 +14,6 @@ package com.narxoz.rpg.combat;
  * its abilities must also be cloned. Otherwise, two enemies
  * will share the same ability objects — and modifying one
  * will affect the other. This is a critical requirement.
- *
- * TODO: Define what all abilities have in common.
- * Think about:
- * - What information should every ability provide?
- * - How should abilities be displayed?
- * - How should abilities be cloned for Prototype pattern?
- *
  * Consider methods like:
  * - String getName()
  * - int getDamage()
@@ -29,12 +22,12 @@ package com.narxoz.rpg.combat;
  * - Ability clone()   <-- Critical for Prototype pattern!
  */
 public interface Ability {
-
-    // TODO: Define ability behavior methods
-    // Consider:
     // - String getName()
+    String getName();
     // - int getDamage()
+    int getDamage();
     // - String getDescription()
+    String getDescription();
     // - Ability clone()  <-- IMPORTANT for deep copying!
-
+    Ability clone();
 }

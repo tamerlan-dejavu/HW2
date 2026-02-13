@@ -40,6 +40,7 @@ public interface LootTable {
     // - int getGoldDrop()
     // - int getExperienceDrop()
     // - String getLootInfo()
+    public void displayLoot();
     // - LootTable clone()  <-- IMPORTANT for deep copying!
 
 }

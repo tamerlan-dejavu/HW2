@@ -1,5 +1,13 @@
 package com.narxoz.rpg;
 
+import com.narxoz.rpg.builder.DragonBossBuilder;
+import com.narxoz.rpg.builder.Enemy;
+import com.narxoz.rpg.builder.EnemyBuilder;
+import com.narxoz.rpg.enemy.DragonBoss;
+import com.narxoz.rpg.loot.LootTable;
+import com.narxoz.rpg.combat.Ability;
+import com.narxoz.rpg.combat.damage.Flame_breath;
+
 /**
  * Main demonstration class for the RPG Enemy System.
  *
@@ -79,7 +87,7 @@ public class Main {
         //   - One complex boss (Dragon) using BossEnemyBuilder
         //     Use the FireComponentFactory to get themed components!
         //   - One medium enemy using BasicEnemyBuilder
-        //
+        
         // TODO: Show the fluent interface in action:
         //   Enemy dragon = new BossEnemyBuilder()
         //       .setName("Ancient Fire Dragon")
@@ -92,6 +100,21 @@ public class Main {
         //       .addPhase(3, 15000)
         //       .build();
         //
+        EnemyBuilder builder = new DragonBossBuilder();
+        Enemy dragon = builder
+            .setName("Ancient Fire Dragon")
+            .setHealth(50000)
+            .setDamage(500)
+            .setDefense(200)
+            .setSpeed(50)
+            .setElement("FIRE")
+            .addAbility(new Flame_breath("Flame Breath"))
+            .addPhase(1, 50000)
+            .addPhase(2, 30000)
+            .addPhase(3, 15000)
+            .setAI("AGGRESSIVE")
+            .build(); 
+        dragon.displayInfo();
         // TODO: Show the Director creating preset enemies:
         //   EnemyDirector director = new EnemyDirector(new BossEnemyBuilder());
         //   Enemy miniBoss = director.createMiniBoss();
