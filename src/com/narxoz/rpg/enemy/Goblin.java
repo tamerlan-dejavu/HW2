@@ -3,10 +3,8 @@ package com.narxoz.rpg.enemy;
 import com.narxoz.rpg.builder.Enemy;
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.loot.LootTable;
-
 import java.util.List;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 
 /**
  * Example basic enemy implementation — a simple Goblin.
@@ -87,7 +85,10 @@ public class Goblin extends Enemy {
                 + " | Defense: " + defense + " | Speed: " + speed);
         System.out.println("Abilities: " + abilities.size() + " ability(ies)");
         // TODO: Display abilities details
-        // TODO: Display loot table
+        // Display loot table when available
+        if (lootTable != null) {
+            System.out.println("Loot items: " + lootTable.getItems());
+        }
     }
 
     private Goblin(Goblin other) {

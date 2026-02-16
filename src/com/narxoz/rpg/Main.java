@@ -3,10 +3,10 @@ package com.narxoz.rpg;
 import com.narxoz.rpg.builder.DragonBossBuilder;
 import com.narxoz.rpg.builder.Enemy;
 import com.narxoz.rpg.builder.EnemyBuilder;
-import com.narxoz.rpg.enemy.DragonBoss;
-import com.narxoz.rpg.loot.LootTable;
+
 import com.narxoz.rpg.combat.Ability;
-import com.narxoz.rpg.combat.damage.Flame_breath;
+import com.narxoz.rpg.factory.EnemyComponentFactory;
+import com.narxoz.rpg.factory.FireComponentFactory;  
 
 /**
  * Main demonstration class for the RPG Enemy System.
@@ -75,6 +75,10 @@ public class Main {
         System.out.println("PART 1: ABSTRACT FACTORY - Themed Components");
         System.out.println("============================================\n");
 
+        EnemyComponentFactory fireFactory = new FireComponentFactory();
+        List
+
+
         // Your Abstract Factory demonstration here...
 
 
@@ -100,21 +104,7 @@ public class Main {
         //       .addPhase(3, 15000)
         //       .build();
         //
-        EnemyBuilder builder = new DragonBossBuilder();
-        Enemy dragon = builder
-            .setName("Ancient Fire Dragon")
-            .setHealth(50000)
-            .setDamage(500)
-            .setDefense(200)
-            .setSpeed(50)
-            .setElement("FIRE")
-            .addAbility(new Flame_breath("Flame Breath"))
-            .addPhase(1, 50000)
-            .addPhase(2, 30000)
-            .addPhase(3, 15000)
-            .setAI("AGGRESSIVE")
-            .build(); 
-        dragon.displayInfo();
+        
         // TODO: Show the Director creating preset enemies:
         //   EnemyDirector director = new EnemyDirector(new BossEnemyBuilder());
         //   Enemy miniBoss = director.createMiniBoss();
@@ -128,7 +118,27 @@ public class Main {
         System.out.println("============================================\n");
 
         // Your Builder demonstration here...
+        EnemyBuilder builder = new DragonBossBuilder();
+        
+        // add themed abilities from factory
+        for (Ability ability : fireFactory.createAbilities()) {
+            builder.addAbility(ability);
+        }
 
+        Enemy dragon = builder
+            .setName("Ancient Fire Dragon")
+            .setHealth(50000)
+            .setDamage(500)
+            .setDefense(200)
+            .setSpeed(50)
+            .setElement("FIRE")
+            .addPhase(1, 50000)
+            .addPhase(2, 30000)
+            .addPhase(3, 15000)
+            .setLootTable(fireFactory.createLootTable())
+            .setAI(fireFactory.createAIBehavior())
+            .build();
+        dragon.displayInfo();
 
         // ============================================================
         // PART 3: PROTOTYPE PATTERN
