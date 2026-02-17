@@ -1,5 +1,7 @@
 package com.narxoz.rpg.builder;
 
+import com.narxoz.rpg.behavior.AIBehavior;
+import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.enemy.Goblin;
 import com.narxoz.rpg.loot.LootTable;
@@ -67,7 +69,7 @@ public class GoblinBuilder implements EnemyBuilder{
     }
 
     @Override
-    public EnemyBuilder setAI(String aiBehavior) {
+    public EnemyBuilder setAI(BehaviorTypes aiBehavior) {
         enemy.setAiBehavior(aiBehavior);
         return this;
     }
@@ -76,6 +78,4 @@ public class GoblinBuilder implements EnemyBuilder{
     public Enemy build() {
         return enemy;
     }
-    
-    
 }

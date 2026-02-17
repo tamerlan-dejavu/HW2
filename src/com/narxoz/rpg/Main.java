@@ -1,12 +1,22 @@
 package com.narxoz.rpg;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.narxoz.rpg.builder.DragonBossBuilder;
 import com.narxoz.rpg.builder.Enemy;
 import com.narxoz.rpg.builder.EnemyBuilder;
 
 import com.narxoz.rpg.combat.Ability;
-import com.narxoz.rpg.factory.EnemyComponentFactory;
-import com.narxoz.rpg.factory.FireComponentFactory;  
+import com.narxoz.rpg.combat.AbilityType;
+import com.narxoz.rpg.loot.LootTable;
+import com.narxoz.rpg.abstractFactory.ComponentsFactory;
+import com.narxoz.rpg.abstractFactory.FireComponentFactory;
+import com.narxoz.rpg.behavior.AggressiveBehavior;
+import com.narxoz.rpg.behavior.BehaviorTypes;
+import com.narxoz.rpg.behavior.AIBehavior;
+
+ 
 
 /**
  * Main demonstration class for the RPG Enemy System.
@@ -75,8 +85,12 @@ public class Main {
         System.out.println("PART 1: ABSTRACT FACTORY - Themed Components");
         System.out.println("============================================\n");
 
-        EnemyComponentFactory fireFactory = new FireComponentFactory();
-        List
+        ComponentsFactory fireFactory = new FireComponentFactory();
+        List<Ability> fireAbilities = fireFactory.createAbility("Flame Breath");
+        LootTable fireLoot = fireFactory.createLootTable(); 
+        fireFactory.displayComponents();
+
+
 
 
         // Your Abstract Factory demonstration here...
@@ -118,13 +132,13 @@ public class Main {
         System.out.println("============================================\n");
 
         // Your Builder demonstration here...
-        EnemyBuilder builder = new DragonBossBuilder();
+        // EnemyBuilder builder = new DragonBossBuilder();
         
-        // add themed abilities from factory
-        for (Ability ability : fireFactory.createAbilities()) {
-            builder.addAbility(ability);
-        }
-
+        // // add themed abilities from factory
+        // for (Ability ability : fireFactory.createAbilities()) {
+        //     builder.addAbility(ability);
+        // }
+        EnemyBuilder builder = new DragonBossBuilder();
         Enemy dragon = builder
             .setName("Ancient Fire Dragon")
             .setHealth(50000)
@@ -136,7 +150,7 @@ public class Main {
             .addPhase(2, 30000)
             .addPhase(3, 15000)
             .setLootTable(fireFactory.createLootTable())
-            .setAI(fireFactory.createAIBehavior())
+            .setAI(BehaviorTypes.AGGRESSIVE)
             .build();
         dragon.displayInfo();
 

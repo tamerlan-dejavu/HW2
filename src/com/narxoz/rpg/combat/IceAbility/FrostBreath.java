@@ -8,6 +8,7 @@ public class FrostBreath extends Ability {
         this.name = name;
         this.damage = 10;
         this.description = "A freezing breath that slows enemies.";
+        this.type = AbilityType.DAMAGE;
     }
     @Override 
     public String getName() { 
@@ -23,7 +24,7 @@ public class FrostBreath extends Ability {
     }
     @Override 
     public AbilityType getType() { 
-        return AbilityType.DAMAGE; 
+        return this.type; 
     }
     @Override 
     public Ability clone() { 

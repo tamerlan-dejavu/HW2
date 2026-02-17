@@ -8,6 +8,7 @@ public class Blizzard extends Ability {
         this.name = name;
         this.damage = 15;
         this.description = "A freezing attack that slows enemies.";
+        this.type = AbilityType.ULTIMATE;
     }
     @Override 
     public String getName() { 
@@ -23,7 +24,7 @@ public class Blizzard extends Ability {
     }
     @Override 
     public AbilityType getType() { 
-        return AbilityType.ULTIMATE; 
+        return this.type; 
     }
     @Override 
     public Ability clone() { 

@@ -8,6 +8,7 @@ public class MeteorStorm extends Ability {
         this.name = name;
         this.damage = 150;
         this.description = "Summons a storm of meteors to strike all enemies.";
+        this.type = AbilityType.ULTIMATE;
     }
     @Override 
     public String getName() { 
@@ -23,7 +24,7 @@ public class MeteorStorm extends Ability {
     }
     @Override 
     public AbilityType getType() { 
-        return AbilityType.ULTIMATE; 
+        return this.type; 
     }
     @Override 
     public Ability clone() { 

@@ -8,6 +8,7 @@ public class IceShield extends Ability {
         this.name = name;
         this.damage = 0;
         this.description = "A defensive ice shield that reduces incoming damage.";
+        this.type = AbilityType.DEFENSIVE;
     }
     @Override 
     public String getName() { 
@@ -23,7 +24,7 @@ public class IceShield extends Ability {
     }
     @Override 
     public AbilityType getType() { 
-        return AbilityType.DEFENSIVE; 
+        return this.type; 
     }
     @Override 
     public Ability clone() { 

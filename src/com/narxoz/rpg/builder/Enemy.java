@@ -1,5 +1,6 @@
 package com.narxoz.rpg.builder;
 
+import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.loot.LootTable;
 
@@ -17,7 +18,7 @@ public abstract class Enemy implements Cloneable{
     protected List<Ability> abilities = new ArrayList<>();
     protected HashMap<Integer, Integer> phases = new HashMap<>();
     protected LootTable lootTable;
-    protected String aiBehavior;
+    protected BehaviorTypes aiBehavior;
     protected boolean canFly;
     protected boolean hasBreathAttack;
     protected int wingspan;
@@ -31,7 +32,7 @@ public abstract class Enemy implements Cloneable{
     public List<Ability> getAbilities() {return abilities;}
     public HashMap<Integer, Integer> getPhases() {return phases;}
     public LootTable getLootTable() {return lootTable;}
-    public String getAiBehavior() {return aiBehavior;}
+    public BehaviorTypes getAiBehavior() {return aiBehavior;}
     public boolean getCanFly() {return canFly;}
     public boolean getHasBreathAttack() {return hasBreathAttack;}
     public int getWingspan() {return wingspan;}
@@ -46,7 +47,7 @@ public abstract class Enemy implements Cloneable{
     public void setAbilities(List<Ability> abilities) { this.abilities = abilities; }
     public void setPhases(HashMap<Integer, Integer> phases) { this.phases = phases; }
     public void setLootTable(LootTable lootTable) { this.lootTable = lootTable; }
-    public void setAiBehavior(String aiBehavior) { this.aiBehavior = aiBehavior; }
+    public void setAiBehavior(BehaviorTypes aiBehavior2) { this.aiBehavior = aiBehavior2; }
     public void setCanFly(boolean canFly) { this.canFly = canFly; }
     public void setHasBreathAttack(boolean hasBreathAttack) { this.hasBreathAttack = hasBreathAttack; }
     public void setWingspan(int wingspan) { this.wingspan = wingspan; }
@@ -80,7 +81,7 @@ public abstract class Enemy implements Cloneable{
         System.out.println("Can Fly: " + canFly+ " | Breath Attack: " + hasBreathAttack+ " | Wingspan: " + wingspan);
         if (lootTable != null) {
             System.out.println("Loot Table:");
-            lootTable.displayLoot();
+            System.out.println(lootTable.getLootInfo());
         }
         System.out.println("==============================\n");
     }

@@ -1,5 +1,6 @@
 package com.narxoz.rpg.builder;
 
+import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.enemy.DragonBoss;
 import com.narxoz.rpg.loot.LootTable;
@@ -67,7 +68,7 @@ public class DragonBossBuilder implements EnemyBuilder{
     }
 
     @Override
-    public EnemyBuilder setAI(String aiBehavior) {
+    public EnemyBuilder setAI(BehaviorTypes aiBehavior) {
         enemy.setAiBehavior(aiBehavior);
         return this;
     }

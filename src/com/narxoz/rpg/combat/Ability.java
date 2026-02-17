@@ -25,6 +25,7 @@ public abstract class Ability {
     protected String name;
     protected int damage;
     protected String description;
+    protected AbilityType type;
     // - String getName()
     public abstract String getName();
     // - int getDamage()

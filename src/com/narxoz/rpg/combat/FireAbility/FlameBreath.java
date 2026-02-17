@@ -8,6 +8,7 @@ public class FlameBreath extends Ability {
         this.name = name;
         this.damage = 90;
         this.description = "Flame breath is a powerful fire-based attack, dealing significant damage over time.";
+        this.type = AbilityType.DAMAGE;
     }
     @Override 
     public String getName() { 
@@ -23,7 +24,7 @@ public class FlameBreath extends Ability {
     }
     @Override 
     public AbilityType getType() { 
-        return AbilityType.ULTIMATE; 
+        return this.type; 
     }
     @Override 
     public Ability clone() { 
