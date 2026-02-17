@@ -1,31 +1,32 @@
 package com.narxoz.rpg.combat.FireAbility;
 
 import com.narxoz.rpg.combat.Ability;
+import com.narxoz.rpg.combat.AbilityType;
 
-public class MeteorStorm extends FireAbility implements Ability {
+public class MeteorStorm extends Ability {
     public MeteorStorm(String name) {
         this.name = name;
         this.damage = 150;
         this.description = "Summons a storm of meteors to strike all enemies.";
     }
-
-    @Override
-    public String getName() {
-        return this.name;
+    @Override 
+    public String getName() { 
+        return name; 
     }
-
-    @Override
-    public int getDamage() {
-        return this.damage;
+    @Override 
+    public int getDamage() { 
+        return damage; 
     }
-
-    @Override
+    @Override 
     public String getDescription() {
-        return this.description;
+        return description; 
     }
-
-    @Override
-    public Ability clone() {
-        return new MeteorStorm(this.name);
+    @Override 
+    public AbilityType getType() { 
+        return AbilityType.ULTIMATE; 
+    }
+    @Override 
+    public Ability clone() { 
+        return new MeteorStorm(this.name); 
     }
 }

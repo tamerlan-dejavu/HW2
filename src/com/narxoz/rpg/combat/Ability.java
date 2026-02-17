@@ -21,13 +21,18 @@ package com.narxoz.rpg.combat;
  * - AbilityType getType() (e.g., DAMAGE, BUFF, DEBUFF, ULTIMATE)
  * - Ability clone()   <-- Critical for Prototype pattern!
  */
-public interface Ability {
+public abstract class Ability {
+    protected String name;
+    protected int damage;
+    protected String description;
     // - String getName()
-    String getName();
+    public abstract String getName();
     // - int getDamage()
-    int getDamage();
+    public abstract int getDamage();
     // - String getDescription()
-    String getDescription();
+    public abstract String getDescription();
     // - Ability clone()  <-- IMPORTANT for deep copying!
-    Ability clone();
+    public abstract Ability clone();
+
+    public abstract AbilityType getType();
 }
