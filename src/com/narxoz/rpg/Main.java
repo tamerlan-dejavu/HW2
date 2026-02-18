@@ -6,17 +6,20 @@ import java.util.stream.Collectors;
 import com.narxoz.rpg.builder.DragonBossBuilder;
 import com.narxoz.rpg.builder.Enemy;
 import com.narxoz.rpg.builder.EnemyBuilder;
-
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.combat.AbilityType;
+import com.narxoz.rpg.combat.FireAbility.FlameBreath;
+import com.narxoz.rpg.combat.FireAbility.FireShield;
+import com.narxoz.rpg.combat.FireAbility.MeteorStorm;
 import com.narxoz.rpg.loot.LootTable;
 import com.narxoz.rpg.abstractFactory.ComponentsFactory;
 import com.narxoz.rpg.abstractFactory.FireComponentFactory;
+import com.narxoz.rpg.abstractFactory.IceComponentFactory;
+import com.narxoz.rpg.abstractFactory.ShadowComponentFactory;
 import com.narxoz.rpg.behavior.AggressiveBehavior;
 import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.behavior.AIBehavior;
 
- 
 
 /**
  * Main demonstration class for the RPG Enemy System.
@@ -86,12 +89,34 @@ public class Main {
         System.out.println("============================================\n");
 
         ComponentsFactory fireFactory = new FireComponentFactory();
-        List<Ability> fireAbilities = fireFactory.createAbility("Flame Breath");
+        List<Ability> fireAbilities = fireFactory.createAbilities();
         LootTable fireLoot = fireFactory.createLootTable(); 
         fireFactory.displayComponents();
 
+        ComponentsFactory iceFactory = new IceComponentFactory();
+        List<Ability> iceAbilities = iceFactory.createAbilities();
+        LootTable iceLoot = iceFactory.createLootTable(); 
+        iceFactory.displayComponents();
 
+        ComponentsFactory shadowFactory = new ShadowComponentFactory();
+        List<Ability> shadowAbilities = shadowFactory.createAbilities();
+        LootTable shadowLoot = shadowFactory.createLootTable(); 
+        shadowFactory.displayComponents();
 
+        ComponentsFactory fireFactoryOne = new FireComponentFactory();
+        List<Ability> fireAbilitiesOne = fireFactoryOne.createAbility("Flame Breath");
+        LootTable fireLootOne = fireFactoryOne.createLootTable(); 
+        fireFactoryOne.displayCreatedComponents(fireAbilitiesOne);
+
+        ComponentsFactory iceFactoryOne = new IceComponentFactory();
+        List<Ability> iceAbilitiesOne = iceFactoryOne.createAbility("Blizzard");
+        LootTable iceLootOne = iceFactoryOne.createLootTable(); 
+        iceFactoryOne.displayCreatedComponents(iceAbilitiesOne);
+
+        ComponentsFactory shadowFactoryOne = new ShadowComponentFactory();
+        List<Ability> shadowAbilitiesOne = shadowFactoryOne.createAbility("Dark Nova");
+        LootTable shadowLootOne = shadowFactoryOne.createLootTable(); 
+        shadowFactoryOne.displayCreatedComponents(shadowAbilitiesOne);
 
         // Your Abstract Factory demonstration here...
 
@@ -146,6 +171,9 @@ public class Main {
             .setDefense(200)
             .setSpeed(50)
             .setElement("FIRE")
+            .addAbility(new FlameBreath("Flame Breath"))
+            .addAbility(new FireShield("Fire Shield"))
+            .addAbility(new MeteorStorm("Meteor Storm"))
             .addPhase(1, 50000)
             .addPhase(2, 30000)
             .addPhase(3, 15000)
