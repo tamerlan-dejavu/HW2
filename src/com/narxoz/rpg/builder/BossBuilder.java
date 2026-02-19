@@ -3,11 +3,12 @@ package com.narxoz.rpg.builder;
 import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.enemy.Enemy;
+import com.narxoz.rpg.enemy.EnemyType;
 import com.narxoz.rpg.loot.LootTable;
 
 
 public class BossBuilder implements EnemyBuilder{
-    private Enemy enemy;
+    public Enemy enemy;
 
     public BossBuilder(Enemy enemy) {
         this.enemy = enemy;
@@ -47,7 +48,7 @@ public class BossBuilder implements EnemyBuilder{
     }
 
     @Override
-    public EnemyBuilder setElement(String element) {
+    public EnemyBuilder setElement(EnemyType element) {
         enemy.setElement(element);
         return this;
     }

@@ -1,6 +1,8 @@
 package com.narxoz.rpg;
 
 import java.util.List;
+
+import com.narxoz.rpg.builder.BasicBuilder;
 import com.narxoz.rpg.builder.BossBuilder;
 import com.narxoz.rpg.builder.EnemyBuilder;
 import com.narxoz.rpg.builder.EnemyDirector;
@@ -18,6 +20,7 @@ import com.narxoz.rpg.abstractFactory.IceComponentFactory;
 import com.narxoz.rpg.abstractFactory.ShadowComponentFactory;
 import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.enemy.EnemyType;
+import com.narxoz.rpg.builder.BasicBuilder;
 
 
 
@@ -104,28 +107,26 @@ public class Main {
         System.out.println("PART 2: BUILDER - Complex Enemy Construction");
         System.out.println("============================================\n");
 
-        EnemyBuilder builder = new BossBuilder(new Dragon());
-        Enemy dragon = builder
-            .setName("Ancient Fire Dragon")
-            .setHealth(50000)
-            .setDamage(500)
-            .setDefense(200)
-            .setSpeed(50)
-            .setElement("FIRE")
-            .addAbility(new FlameBreath("Flame Breath"))
-            .addAbility(new FireShield("Fire Shield"))
-            .addAbility(new MeteorStorm("Meteor Storm"))
-            .addPhase(1, 50000)
-            .addPhase(2, 30000)
-            .addPhase(3, 15000)
-            .setLootTable(fireFactory.createLootTable())
-            .setAI(BehaviorTypes.AGGRESSIVE)
-            .build();
-        dragon.displayInfo();
+        // EnemyBuilder builder = new BossBuilder(new Dragon());
+        // Enemy dragon = builder
+        //     .setName("Ancient Fire Dragon")
+        //     .setHealth(50000)
+        //     .setDamage(500)
+        //     .setDefense(200)
+        //     .setSpeed(50)
+        //     .setElement(EnemyType.FIRE)
+        //     .addAbility(new FlameBreath("Flame Breath"))
+        //     .addAbility(new FireShield("Fire Shield"))
+        //     .addAbility(new MeteorStorm("Meteor Storm"))
+        //     .addPhase(1, 50000)
+        //     .addPhase(2, 30000)
+        //     .addPhase(3, 15000)
+        //     .setLootTable(fireFactory.createLootTable())
+        //     .setAI(BehaviorTypes.AGGRESSIVE)
+        //     .build();
+        // dragon.displayInfo();
 
-        EnemyDirector director = new EnemyDirector(new BossBuilder(new Dragon()));
-        Enemy miniBoss = director.createMiniBoss(new FireComponentFactory(), EnemyType.FIRE);
-        miniBoss.displayInfo();
+        
 
         // ============================================================
         // PART 3: PROTOTYPE PATTERN

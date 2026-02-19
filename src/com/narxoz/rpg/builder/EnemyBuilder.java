@@ -3,6 +3,7 @@ package com.narxoz.rpg.builder;
 import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.enemy.Enemy;
+import com.narxoz.rpg.enemy.EnemyType;
 import com.narxoz.rpg.loot.LootTable;
 
 public interface EnemyBuilder {
@@ -11,7 +12,7 @@ public interface EnemyBuilder {
     EnemyBuilder setDamage(int damage);
     EnemyBuilder setDefense(int defense);
     EnemyBuilder setSpeed(int speed);
-    EnemyBuilder setElement(String element);
+    EnemyBuilder setElement(EnemyType element);
     EnemyBuilder addAbility(Ability ability);
     EnemyBuilder setAI(BehaviorTypes aiBehavior);
     EnemyBuilder addPhase(int phaseNumber, int triggerHealth);
