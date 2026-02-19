@@ -1,24 +1,24 @@
 package com.narxoz.rpg;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
-import com.narxoz.rpg.builder.DragonBossBuilder;
-import com.narxoz.rpg.builder.Enemy;
+import com.narxoz.rpg.builder.BossBuilder;
 import com.narxoz.rpg.builder.EnemyBuilder;
+import com.narxoz.rpg.builder.EnemyDirector;
 import com.narxoz.rpg.combat.Ability;
-import com.narxoz.rpg.combat.AbilityType;
 import com.narxoz.rpg.combat.FireAbility.FlameBreath;
 import com.narxoz.rpg.combat.FireAbility.FireShield;
 import com.narxoz.rpg.combat.FireAbility.MeteorStorm;
+import com.narxoz.rpg.enemy.Enemy;
+import com.narxoz.rpg.enemy.bossEnemy.DemonLord;
+import com.narxoz.rpg.enemy.bossEnemy.Dragon;
 import com.narxoz.rpg.loot.LootTable;
 import com.narxoz.rpg.abstractFactory.ComponentsFactory;
 import com.narxoz.rpg.abstractFactory.FireComponentFactory;
 import com.narxoz.rpg.abstractFactory.IceComponentFactory;
 import com.narxoz.rpg.abstractFactory.ShadowComponentFactory;
-import com.narxoz.rpg.behavior.AggressiveBehavior;
 import com.narxoz.rpg.behavior.BehaviorTypes;
-import com.narxoz.rpg.behavior.AIBehavior;
+import com.narxoz.rpg.enemy.EnemyType;
+
 
 
 /**
@@ -63,26 +63,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== RPG Enemy System - Creational Patterns Capstone ===\n");
 
-        // ============================================================
-        // PART 1: ABSTRACT FACTORY PATTERN
-        // ============================================================
-        // TODO: Create themed component factories
-        //   - FireComponentFactory
-        //   - IceComponentFactory
-        //   - ShadowComponentFactory
-        //
-        // TODO: Show that each factory creates MATCHING components
-        //   EnemyComponentFactory fireFactory = new FireComponentFactory();
-        //   List<Ability> fireAbilities = fireFactory.createAbilities();
-        //   LootTable fireLoot = fireFactory.createLootTable();
-        //   String fireAI = fireFactory.createAIBehavior();
-        //
-        // TODO: Display the components from each factory
-        //   Show that Fire factory creates fire abilities + fire loot
-        //   Show that Ice factory creates ice abilities + ice loot
-        //   Show that they CANNOT be mixed (consistency guaranteed!)
-        //
-        // Think: How is this similar to HW1's EquipmentFactory?
+
 
         System.out.println("============================================");
         System.out.println("PART 1: ABSTRACT FACTORY - Themed Components");
@@ -117,53 +98,13 @@ public class Main {
         List<Ability> shadowAbilitiesOne = shadowFactoryOne.createAbility("Dark Nova");
         LootTable shadowLootOne = shadowFactoryOne.createLootTable(); 
         shadowFactoryOne.displayCreatedComponents(shadowAbilitiesOne);
-
-        // Your Abstract Factory demonstration here...
-
-
-        // ============================================================
-        // PART 2: BUILDER PATTERN
-        // ============================================================
-        // TODO: Build complex enemies using your EnemyBuilder
-        //
-        // Build at least:
-        //   - One complex boss (Dragon) using BossEnemyBuilder
-        //     Use the FireComponentFactory to get themed components!
-        //   - One medium enemy using BasicEnemyBuilder
         
-        // TODO: Show the fluent interface in action:
-        //   Enemy dragon = new BossEnemyBuilder()
-        //       .setName("Ancient Fire Dragon")
-        //       .setHealth(50000)
-        //       .setDamage(500)
-        //       .setAbilities(fireFactory.createAbilities())
-        //       .setLootTable(fireFactory.createLootTable())
-        //       .addPhase(1, 50000)
-        //       .addPhase(2, 30000)
-        //       .addPhase(3, 15000)
-        //       .build();
-        //
-        
-        // TODO: Show the Director creating preset enemies:
-        //   EnemyDirector director = new EnemyDirector(new BossEnemyBuilder());
-        //   Enemy miniBoss = director.createMiniBoss();
-        //   Enemy raidBoss = director.createRaidBoss();
-        //
-        // Think: Where is Factory Method here? (Hint: build() IS the factory method!)
-        // Think: How does the Director use Factory Method delegation?
 
         System.out.println("============================================");
         System.out.println("PART 2: BUILDER - Complex Enemy Construction");
         System.out.println("============================================\n");
 
-        // Your Builder demonstration here...
-        // EnemyBuilder builder = new DragonBossBuilder();
-        
-        // // add themed abilities from factory
-        // for (Ability ability : fireFactory.createAbilities()) {
-        //     builder.addAbility(ability);
-        // }
-        EnemyBuilder builder = new DragonBossBuilder();
+        EnemyBuilder builder = new BossBuilder(new Dragon());
         Enemy dragon = builder
             .setName("Ancient Fire Dragon")
             .setHealth(50000)
@@ -181,6 +122,10 @@ public class Main {
             .setAI(BehaviorTypes.AGGRESSIVE)
             .build();
         dragon.displayInfo();
+
+        EnemyDirector director = new EnemyDirector(new BossBuilder(new Dragon()));
+        Enemy miniBoss = director.createMiniBoss(new FireComponentFactory(), EnemyType.FIRE);
+        miniBoss.displayInfo();
 
         // ============================================================
         // PART 3: PROTOTYPE PATTERN

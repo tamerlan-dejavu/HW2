@@ -1,9 +1,9 @@
 package com.narxoz.rpg.abstractFactory;
 
 import com.narxoz.rpg.combat.Ability;
-import com.narxoz.rpg.combat.FireAbility.FlameBreath;
-import com.narxoz.rpg.combat.FireAbility.MeteorStorm;
-import com.narxoz.rpg.combat.FireAbility.FireShield;
+import com.narxoz.rpg.combat.ShadowAbility.DarkNova;
+import com.narxoz.rpg.combat.ShadowAbility.ShadowStrike;
+import com.narxoz.rpg.combat.ShadowAbility.Vanish;
 import com.narxoz.rpg.loot.ShadowLootTable;
 import com.narxoz.rpg.loot.LootTable;
 import java.util.ArrayList;
@@ -16,9 +16,9 @@ public class ShadowComponentFactory implements ComponentsFactory{
     @Override
     public List<Ability> createAbilities() {
         List<Ability> list = new ArrayList<>();
-        list.add(new FlameBreath("Dark Nova"));
-        list.add(new FireShield("Shadow Strike"));
-        list.add(new MeteorStorm("Vanish"));
+        list.add(new DarkNova("Dark Nova"));
+        list.add(new ShadowStrike("Shadow Strike"));
+        list.add(new Vanish("Vanish"));
         return list;
     }
 
@@ -26,13 +26,13 @@ public class ShadowComponentFactory implements ComponentsFactory{
         List<Ability> list = new ArrayList<>();
         switch (abilityName) {
             case "Dark Nova":
-                list.add(new FlameBreath(abilityName));
+                list.add(new DarkNova(abilityName));
                 break;
             case "Shadow Strike":
-                list.add(new FireShield(abilityName));
+                list.add(new ShadowStrike(abilityName));
                 break;
             case "Vanish":
-                list.add(new MeteorStorm(abilityName));
+                list.add(new Vanish(abilityName));
                 break;
             default:
                 System.out.println("Ability not found: " + abilityName);
@@ -67,5 +67,6 @@ public class ShadowComponentFactory implements ComponentsFactory{
         System.out.println("- Loot Table: " + lootTable.getLootInfo());
         System.out.println("- AI Behavior: " + createAIBehavior().getDescription());
         System.out.println("-----------------------------");
+        System.out.println(" ");
     }
 }

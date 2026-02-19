@@ -1,9 +1,9 @@
 package com.narxoz.rpg.abstractFactory;
 
 import com.narxoz.rpg.combat.Ability;
-import com.narxoz.rpg.combat.FireAbility.FlameBreath;
-import com.narxoz.rpg.combat.FireAbility.MeteorStorm;
-import com.narxoz.rpg.combat.FireAbility.FireShield;
+import com.narxoz.rpg.combat.IceAbility.Blizzard;
+import com.narxoz.rpg.combat.IceAbility.FrostBreath;
+import com.narxoz.rpg.combat.IceAbility.IceShield;
 import com.narxoz.rpg.loot.IceLootTable;
 import com.narxoz.rpg.loot.LootTable;
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ public class IceComponentFactory implements ComponentsFactory{
     @Override
     public List<Ability> createAbilities() {
         List<Ability> list = new ArrayList<>();
-        list.add(new FlameBreath("Blizzard"));
-        list.add(new FireShield("Ice Shield"));
-        list.add(new MeteorStorm("Frost Breath"));
+        list.add(new Blizzard("Blizzard"));
+        list.add(new IceShield("Ice Shield"));
+        list.add(new FrostBreath("Frost Breath"));
         return list;
     }
 
@@ -27,13 +27,13 @@ public class IceComponentFactory implements ComponentsFactory{
         List<Ability> list = new ArrayList<>();
         switch (abilityName) {
             case "Blizzard":
-                list.add(new FlameBreath(abilityName));
+                list.add(new Blizzard(abilityName));
                 break;
             case "Ice Shield":
-                list.add(new FireShield(abilityName));
+                list.add(new IceShield(abilityName));
                 break;
             case "Frost Breath":
-                list.add(new MeteorStorm(abilityName));
+                list.add(new FrostBreath(abilityName));
                 break;
             default:
                 System.out.println("Ability not found: " + abilityName);
@@ -67,5 +67,6 @@ public class IceComponentFactory implements ComponentsFactory{
         System.out.println("- Loot Table: " + lootTable.getLootInfo());
         System.out.println("- AI Behavior: " + createAIBehavior().getDescription());
         System.out.println("-----------------------------");
+        System.out.println(" ");
     }
 }

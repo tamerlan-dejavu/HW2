@@ -2,15 +2,18 @@ package com.narxoz.rpg.builder;
 
 import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.Ability;
-import com.narxoz.rpg.enemy.DragonBoss;
+import com.narxoz.rpg.enemy.Enemy;
 import com.narxoz.rpg.loot.LootTable;
 
 
-public class DragonBossBuilder implements EnemyBuilder{
+public class BossBuilder implements EnemyBuilder{
     private Enemy enemy;
 
-    public DragonBossBuilder(){
-        this.enemy = new DragonBoss();
+    public BossBuilder(Enemy enemy) {
+        this.enemy = enemy;
+    }
+
+    public BossBuilder() {
     }
 
     @Override

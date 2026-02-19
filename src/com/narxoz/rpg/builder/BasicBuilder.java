@@ -1,17 +1,16 @@
 package com.narxoz.rpg.builder;
 
-import com.narxoz.rpg.behavior.AIBehavior;
 import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.Ability;
-import com.narxoz.rpg.enemy.Goblin;
+import com.narxoz.rpg.enemy.Enemy;
 import com.narxoz.rpg.loot.LootTable;
 
 
-public class GoblinBuilder implements EnemyBuilder{
+public class BasicBuilder implements EnemyBuilder{
     private Enemy enemy;
 
-    public GoblinBuilder(){
-        this.enemy = new Goblin();
+    public BasicBuilder(Enemy enemy) {
+        this.enemy = enemy;
     }
 
     @Override

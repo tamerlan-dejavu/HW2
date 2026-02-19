@@ -1,4 +1,4 @@
-package com.narxoz.rpg.builder;
+package com.narxoz.rpg.enemy;
 
 import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.Ability;
@@ -84,6 +84,7 @@ public abstract class Enemy implements Cloneable{
             System.out.println(lootTable.getLootInfo());
         }
         System.out.println("==============================\n");
+        System.out.println(" ");
     }
 
     // TODO: Define clone method for Prototype pattern

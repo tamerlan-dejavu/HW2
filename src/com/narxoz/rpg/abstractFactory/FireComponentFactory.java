@@ -51,17 +51,6 @@ public class FireComponentFactory implements ComponentsFactory{
         return new AggressiveBehavior("Fire");
     }
 
-    // @Override
-    // public void displayComponents() {
-    //     System.out.println("Fire Component Factory:");
-    //     System.out.println("- Abilities: Flame Breath, Fire Shield, Meteor Storm");
-    //     System.out.println("- Loot Table: " + lootTable.getLootInfo());
-    //     System.out.println("- AI Behavior: " + createAIBehavior().getDescription());
-    //     System.out.println("Gold Drop: " + lootTable.getGoldDrop() + " | Experience Drop: " + lootTable.getExperienceDrop());
-    //     System.out.println("-----------------------------");
-    //     System.out.println(" ");
-    // }
-
     @Override
     public void displayComponents() {
         System.out.println("Fire Component Factory:");
@@ -73,10 +62,11 @@ public class FireComponentFactory implements ComponentsFactory{
         System.out.println(" ");
     }
     public void displayCreatedComponents(List<Ability> abilities) {
-    System.out.println("Fire Component Factory (Custom Batch):");
-    System.out.println("- Ability(ies): " + abilities.stream().map(Ability::getName).reduce((a, b) -> a + ", " + b).orElse("No Abilities"));
-    System.out.println("- Loot Table: " + lootTable.getLootInfo()); // Лут всегда общий для типа
-    System.out.println("- AI Behavior: " + createAIBehavior().getDescription());
-    System.out.println("-----------------------------");
-}
+        System.out.println("Fire Component Factory (Custom Batch):");
+        System.out.println("- Ability(ies): " + abilities.stream().map(Ability::getName).reduce((a, b) -> a + ", " + b).orElse("No Abilities"));
+        System.out.println("- Loot Table: " + lootTable.getLootInfo()); 
+        System.out.println("- AI Behavior: " + createAIBehavior().getDescription());
+        System.out.println("-----------------------------");
+        System.out.println(" ");
+    }
 }
