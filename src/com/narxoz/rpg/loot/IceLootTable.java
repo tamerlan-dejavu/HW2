@@ -21,7 +21,7 @@ public class IceLootTable implements LootTable {
     @Override public List<String> getItems() { return new ArrayList<>(items); }
     @Override public int getGoldDrop() { return gold; }
     @Override public int getExperienceDrop() { return experience; }
-    @Override public String getLootInfo() { return "Ice Loot: " + items.toString(); }
+    @Override public String getLootInfo() { return items.toString(); }
     @Override public LootTable clone() {
         return new IceLootTable();
     }

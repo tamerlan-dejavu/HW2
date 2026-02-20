@@ -1,5 +1,6 @@
 package com.narxoz.rpg;
 
+import java.lang.annotation.ElementType;
 import java.util.List;
 
 import com.narxoz.rpg.builder.BasicBuilder;
@@ -107,24 +108,43 @@ public class Main {
         System.out.println("PART 2: BUILDER - Complex Enemy Construction");
         System.out.println("============================================\n");
 
-        // EnemyBuilder builder = new BossBuilder(new Dragon());
-        // Enemy dragon = builder
-        //     .setName("Ancient Fire Dragon")
-        //     .setHealth(50000)
-        //     .setDamage(500)
-        //     .setDefense(200)
-        //     .setSpeed(50)
-        //     .setElement(EnemyType.FIRE)
-        //     .addAbility(new FlameBreath("Flame Breath"))
-        //     .addAbility(new FireShield("Fire Shield"))
-        //     .addAbility(new MeteorStorm("Meteor Storm"))
-        //     .addPhase(1, 50000)
-        //     .addPhase(2, 30000)
-        //     .addPhase(3, 15000)
-        //     .setLootTable(fireFactory.createLootTable())
-        //     .setAI(BehaviorTypes.AGGRESSIVE)
-        //     .build();
-        // dragon.displayInfo();
+        Enemy fireDragon = new BossBuilder()
+            .setName("Ancient Fire Dragon")
+            .setHealth(50000)
+            .setDamage(500)
+            .setDefense(200)
+            .setSpeed(50)
+            .setElement(EnemyType.FIRE)
+            .setAbilities(fireFactory.createAbilities())
+            .setLootTable(fireLoot)
+            .addPhase(1, 50000)
+            .addPhase(2, 30000)
+            .addPhase(3, 15000)
+            .setCanFly(true)
+            .setHasBreathAttack(true)
+            .setWingspan(20)
+            .addAbility(new FlameBreath("Fire Breath"))
+            .setAI(BehaviorTypes.AGGRESSIVE)
+            .build();
+        fireDragon.displayInfo();
+
+        Enemy mefistofel = new BossBuilder()
+            .setName("Hell Demon")
+            .setHealth(50000)
+            .setDamage(500)
+            .setDefense(200)
+            .setSpeed(50)
+            .setElement(EnemyType.ICE)
+            .setAbilities(iceFactory.createAbilities())
+            .setLootTable(iceFactory.createLootTable())
+            .addPhase(1, 50000)
+            .addPhase(2, 30000)
+            .addPhase(3, 15000)
+            .setCanFly(true)
+            .setHasBreathAttack(true)
+            .setWingspan(20)
+            .build();
+        mefistofel.displayInfo();
 
         
 

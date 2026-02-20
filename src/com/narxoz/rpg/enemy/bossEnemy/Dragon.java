@@ -23,4 +23,6 @@ public class Dragon extends Enemy {
     public Enemy clone() {
         return new Dragon(this); 
     }
+
+    
 }
