@@ -8,12 +8,7 @@ public class AggressiveBehavior implements AIBehavior {
     }
 
     @Override
-    public void execute() {
-        System.out.println(style + " AI: Focuses on maximum damage and offensive abilities!");
-    }
-
-    @Override
     public String getDescription() {
-        return style + " Aggressive Style";
+        return style + " Aggressive Style. AI: Focuses on maximum damage and offensive abilities!";
     }
 }

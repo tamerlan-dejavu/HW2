@@ -8,12 +8,7 @@ public class DefensiveBehavior implements AIBehavior {
     }
 
     @Override
-    public void execute() {
-        System.out.println(style + " AI: Prioritizes defense, crowd-control and survivability.");
-    }
-
-    @Override
     public String getDescription() {
-        return style + " Defensive Style";
+        return style + " Defensive Style. AI: Prioritizes defense, crowd-control and survivability.";
     }
 }

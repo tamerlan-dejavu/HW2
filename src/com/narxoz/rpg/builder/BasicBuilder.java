@@ -6,13 +6,11 @@ import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.enemy.Enemy;
 import com.narxoz.rpg.enemy.EnemyType;
-import com.narxoz.rpg.enemy.basicEnemy.BasicTypes;
 import com.narxoz.rpg.enemy.basicEnemy.Goblin;
 import com.narxoz.rpg.loot.LootTable;
 
 
 public class BasicBuilder implements EnemyBuilder{
-    protected BasicTypes basicType;
     public Enemy enemy;
     protected String name;
     protected int health;
