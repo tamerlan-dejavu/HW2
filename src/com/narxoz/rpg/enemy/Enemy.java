@@ -19,6 +19,7 @@ public abstract class Enemy implements Cloneable{
     protected boolean canFly;
     protected boolean hasBreathAttack;
     protected int wingspan;
+    protected Ability ability;
 
     public String getName() {return name;}
     public int getHealth() {return health;}
@@ -47,34 +48,58 @@ public abstract class Enemy implements Cloneable{
     public void setCanFly(boolean canFly) { this.canFly = canFly; }
     public void setHasBreathAttack(boolean hasBreathAttack) { this.hasBreathAttack = hasBreathAttack; }
     public void setWingspan(int wingspan) { this.wingspan = wingspan; }
+    public void setAbility(Ability ability) {abilities.add(ability);}
+    public void addPhase(int phaseNumber, int healthThreshold) {this.phases.put(phaseNumber, healthThreshold);}
 
     public Enemy() {}
 
-    public void displayInfo() {
-        System.out.println("=== " + name + " (RPG Enemy) ===");
-        System.out.println("Health: " + health + " | Damage: " + damage + " | Defense: " + defense + " | Speed: " + speed);
-        System.out.println("Element: " + element);
-        if (abilities != null) {
+    public void displayInfo(EnemyType type) {
+        if(type == EnemyType.BASIC){
+            System.out.println("=== " + name + " (RPG Enemy) ===");
+            System.out.println("Health: " + health + " | Damage: " + damage + " | Defense: " + defense + " | Speed: " + speed);
+            System.out.println("Element: " + element);
+            if (abilities != null) {
             System.out.println("Abilities (" + abilities.size() + "):");
-            for (Ability ability : abilities) {
+                for (Ability ability : abilities) {
                 System.out.println("  - " + ability.getName() + " (DMG: " + ability.getDamage() + ")");
+                }
             }
+            System.out.println("AI Behavior: " + aiBehavior);
+            if (lootTable != null) {
+                System.out.println("Loot Table: " + lootTable.getLootInfo() + " | gold drop : " + lootTable.getGoldDrop() + " | exp drop : " + lootTable.getExperienceDrop());
+            }
+            System.out.println("==============================\n");
+            System.out.println(" ");
         }
-        if (phases != null && !phases.isEmpty()) {
+        else if (type == EnemyType.BOSS){
+            System.out.println("=== " + name + " (RPG Enemy) ===");
+            System.out.println("Health: " + health + " | Damage: " + damage + " | Defense: " + defense + " | Speed: " + speed);
+            System.out.println("Element: " + element);
+            if (abilities != null) {
+            System.out.println("Abilities (" + abilities.size() + "):");
+                for (Ability ability : abilities) {
+                System.out.println("  - " + ability.getName() + " (DMG: " + ability.getDamage() + ")");
+                }
+            }
+            if (phases != null && !phases.isEmpty()) {
             System.out.println("Boss Phases: " + phases.size());
-            for (Map.Entry<Integer, Integer> phase : phases.entrySet()) {
-                System.out.println("  Phase " + phase.getKey()
-                        + ": triggers at " + phase.getValue() + " HP");
+                for (Map.Entry<Integer, Integer> phase : phases.entrySet()) {
+                System.out.println("  Phase " + phase.getKey() + ": triggers at " + phase.getValue() + " HP");
+                }
+            } 
+            else System.out.println("Boss Phases: None");
+            System.out.println("AI Behavior: " + aiBehavior);
+            System.out.println("Can Fly: " + canFly+ " | Breath Attack: " + hasBreathAttack+ " | Wingspan: " + wingspan);
+            if (lootTable != null) {
+                System.out.println("Loot Table: " + lootTable.getLootInfo() + " | gold drop : " + lootTable.getGoldDrop() + " | exp drop : " + lootTable.getExperienceDrop());
             }
-        } 
-        else System.out.println("Boss Phases: None");
-        System.out.println("AI Behavior: " + aiBehavior);
-        System.out.println("Can Fly: " + canFly+ " | Breath Attack: " + hasBreathAttack+ " | Wingspan: " + wingspan);
-        if (lootTable != null) {
-            System.out.println("Loot Table: " + lootTable.getLootInfo() + " | gold drop : " + lootTable.getGoldDrop() + " | exp drop : " + lootTable.getExperienceDrop());
+            System.out.println("==============================\n");
+            System.out.println(" ");
+            }
+        else {
+            System.out.println("NONE");
         }
-        System.out.println("==============================\n");
-        System.out.println(" ");
+        
     }
 
     protected Enemy(Enemy other) {
@@ -84,4 +109,12 @@ public abstract class Enemy implements Cloneable{
 
     @Override
     public abstract Enemy clone();
+
+    public void multiplyStats(double multiplier) {
+        this.health = (int) (this.health * multiplier);
+        this.damage = (int) (this.damage * multiplier);
+        this.defense = (int) (this.defense * multiplier);
+        this.speed = (int) (this.speed * multiplier);
+    }
+    
 }

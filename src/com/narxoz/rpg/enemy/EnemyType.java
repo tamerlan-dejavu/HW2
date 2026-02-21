@@ -1,5 +1,5 @@
 package com.narxoz.rpg.enemy;
 
 public enum EnemyType {
-   FIRE, ICE, SHADOW
+   FIRE, ICE, SHADOW, BASIC, BOSS
 }

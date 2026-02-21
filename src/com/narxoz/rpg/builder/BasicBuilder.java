@@ -6,85 +6,13 @@ import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.enemy.Enemy;
 import com.narxoz.rpg.enemy.EnemyType;
+import com.narxoz.rpg.enemy.basicEnemy.BasicTypes;
 import com.narxoz.rpg.enemy.basicEnemy.Goblin;
 import com.narxoz.rpg.loot.LootTable;
 
 
 public class BasicBuilder implements EnemyBuilder{
-    // public Enemy enemy;
-
-    // public BasicBuilder(Enemy enemy) {
-    //     this.enemy = enemy;
-    // }
-
-    // public BasicBuilder(){
-    //     // this.enemy = new Enemy();
-    // }
-
-    // @Override
-    // public EnemyBuilder setName(String name) {
-    //     enemy.setName(name);
-    //     return this;
-    // }
-
-    // @Override
-    // public EnemyBuilder setHealth(int health) {
-    //     enemy.setHealth(health);
-    //     return this;
-    // }
-
-    // @Override
-    // public EnemyBuilder setDamage(int damage) {
-    //     enemy.setDamage(damage);
-    //     return this;
-    // }
-
-    // @Override
-    // public EnemyBuilder setDefense(int defense) {
-    //     enemy.setDefense(defense);
-    //     return this;
-    // }
-
-    // @Override
-    // public EnemyBuilder setSpeed(int speed) {
-    //     enemy.setSpeed(speed);
-    //     return this;
-    // }
-
-    // @Override
-    // public EnemyBuilder setElement(EnemyType element) {
-    //     enemy.setElement(element);
-    //     return this;
-    // }
-
-    // @Override
-    // public EnemyBuilder addAbility(Ability ability) {
-    //     enemy.getAbilities().add(ability);
-    //     return this;
-    // }
-
-    // @Override
-    // public EnemyBuilder addPhase(int phaseNumber, int triggerHealth) {
-    //     enemy.getPhases().put(phaseNumber, triggerHealth);
-    //     return this;
-    // }
-
-    // @Override
-    // public EnemyBuilder setLootTable(LootTable lootTable) {
-    //     enemy.setLootTable(lootTable);
-    //     return this;
-    // }
-
-    // @Override
-    // public EnemyBuilder setAI(BehaviorTypes aiBehavior) {
-    //     enemy.setAiBehavior(aiBehavior);
-    //     return this;
-    // }
-
-    // @Override
-    // public Enemy build() {
-    //     return enemy;
-    // }
+    protected BasicTypes basicType;
     public Enemy enemy;
     protected String name;
     protected int health;
@@ -96,7 +24,7 @@ public class BasicBuilder implements EnemyBuilder{
     protected LootTable lootTable;
     protected BehaviorTypes aiBehavior;
 
-    public BasicBuilder() {
+    public BasicBuilder(){
         this.enemy = new Goblin();
     }
 
@@ -158,17 +86,11 @@ public class BasicBuilder implements EnemyBuilder{
         return this;
     }
 
-    // @Override
-    // public EnemyBuilder setAI(BehaviorTypes aiBehavior) {
-    //     this.aiBehavior = aiBehavior;
-    //     return this;
-    // }
-
-    // @Override
-    // public EnemyBuilder addPhase(int phaseNumber, int triggerHealth) {
-    //     this.phases.put(phaseNumber, triggerHealth);
-    //     return this;
-    // }
+    @Override
+    public EnemyBuilder setAI(BehaviorTypes aiBehavior) {
+        this.aiBehavior = aiBehavior;
+        return this;
+    }
 
     @Override
     public Enemy build() {
@@ -183,11 +105,4 @@ public class BasicBuilder implements EnemyBuilder{
         enemy.setAiBehavior(this.aiBehavior);
         return enemy;
     }
-
-    @Override
-    public EnemyBuilder setAI(BehaviorTypes aiBehavior) {
-        this.aiBehavior = aiBehavior;
-        return this;
-    }
-
 }

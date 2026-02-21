@@ -17,7 +17,6 @@ public interface EnemyBuilder {
     EnemyBuilder addAbility(Ability ability);
     EnemyBuilder setAbilities(List<Ability> abilities);
     EnemyBuilder setAI(BehaviorTypes aiBehavior);
-    // EnemyBuilder addPhase(int phaseNumber, int triggerHealth);
     EnemyBuilder setLootTable(LootTable lootTable);
     Enemy build();  
 }
